@@ -1,1 +1,82 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    padding: 0;
+    box-sizing: border-box; 
+    font-family: 'Nunito', sans-serif;
+    margin: 0 auto;
+  }
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-33 {
+  float: left;
+  width: 33.33%;
+  margin-top: 6px;
+}
+.col-50 {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+.col-100 {
+  float: left;
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.mt-1 {
+  margin-top: 10px;
+}
+.mt-2 {
+  margin-top: 20px;
+}
+.mt-3 {
+  margin-top: 30px;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s; 
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container-card {
+  padding: 2px 16px;
+}
+
+
+@media screen and (max-width: 600px) {
+  .col-25, .col-33, .col-50 ,.col-75{
+    width: 100%;
+    margin-top: 0;
+  } 
+}

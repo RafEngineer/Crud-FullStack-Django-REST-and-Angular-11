@@ -1,15 +1,58 @@
+<style>
+  header {
+    background-color: #333;
+  }
+  
+  ul.topnav {
+    list-style-type: none; 
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+
+  ul.topnav li {float: left;}
+
+  ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  ul.topnav li a:hover:not(.active) {background-color: #111;}
+
+  ul.topnav li a.active {background-color: #4CAF50;}
+
+  ul.topnav li.right {float: right;}
+
+  footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0px;
+  }
+
+  @media screen and (max-width: 600px) {
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+  }
+</style>
 <!-- Navbar -->
-<div>
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">FullStack</a>
-    <div class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a routerLink="usuarios" class="nav-link">Usuários</a>
-      </li>
-    </div>
-  </nav>
+  <header>
+    <nav> 
+      <ul class="topnav container"> 
+        <li><a class="active" routerLink="usuarios">Usuários</a></li> 
+      </ul>
+    </nav>
+  </header>
+  
 
   <div class="container mt-3">
     <router-outlet></router-outlet>
   </div>
-</div>
+
+  <footer>
+    © 2020 FullStack
+  </footer>
