@@ -10,21 +10,19 @@
         <input
           type="text"
           class="mt-1 col-50"
-          id="title"
-          required
+          id="title" 
           [(ngModel)]="usuario.nome"
           name="title"
         />
       </div>
       <div class="row col-100 mt-1">
-        <button (click)="saveUsuario()" class="btn btn-success col-25">Adicionar</button>
+        <button (click)="saveUsuario()" class="button bg-success col-25">Adicionar</button>
       </div>
-     
     </div>
 
     <div *ngIf="submitted">
       <h2>Usuario foi adicionado com sucesso!</h2>
-      <button class="btn btn-success" (click)="newUsuario()">Adicionar novo usuário</button>
+      <button class="button bg-success" (click)="newUsuario()">Adicionar novo usuário</button>
     </div>
   </div>
 </div>
@@ -41,15 +39,20 @@
           *ngFor="let usuario of usuarios; let i = index"
           [class.active]="i == currentIndex" 
         >
-          <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-          <div class="container">
+          <div class="card-image">
+            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+          </div>
+          <hr>
+          <div class="container-card">
             <h4><b>{{ usuario.nome }}</b></h4> 
-            <button class="badge badge-danger mr-2" (click)="setActiveUsuario(usuario, i)">
-              Deletar
-            </button>
-            <a class="badge badge-warning" routerLink="/usuario/{{ usuario.id }}/tarefas/">
-              Ver tarefas
-            </a>
+          </div>
+          <div class="card-footer"> 
+              <button class="button bg-danger mr-2" (click)="setActiveUsuario(usuario, i)">
+                Deletar
+              </button>  
+              <a routerLink="/usuario/{{ usuario.id }}/tarefas/">
+                Ver tarefas
+              </a> 
           </div>
         </div>
       </div>

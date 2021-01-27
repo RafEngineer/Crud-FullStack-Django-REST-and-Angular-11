@@ -1,0 +1,17 @@
+.estado {
+    border: none;
+    color: white;
+    padding: 2px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 30px;
+}
+.estado-feito{
+    background-color: #4CAF50;
+}
+
+.estado-pendente{
+    background-color: Orange;
+}
