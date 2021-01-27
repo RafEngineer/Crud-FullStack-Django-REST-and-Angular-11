@@ -74,7 +74,11 @@ export class UsuariosListComponent implements OnInit {
 
   setActiveUsuario(usuario: Usuario, index: number): void {
     this.currentUsuario = usuario;
-    this.currentIndex = index;
+    this.currentIndex = index;   
+    if(confirm(`Deseja realmente deletar o usuário ${usuario.nome}?`))
+    {
+      this.deleteUsuario();
+    }
   }
   
   deleteUsuario(): void {  

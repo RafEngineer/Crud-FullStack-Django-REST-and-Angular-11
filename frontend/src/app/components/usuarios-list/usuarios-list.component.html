@@ -1,64 +1,58 @@
 <!-- Add User -->
+<h1>Página de usuários</h1>
 <div>
-  <div class="submit-form">
-    <div *ngIf="!submitted">
-      <div class="form-group">
-        <label for="title">Nome do Usuário</label>
+  <div class="row mt-3">
+    <div *ngIf="!submitted" class="col-100">
+      <h2> <i class="fa fa-user" aria-hidden="true"></i>
+         Adicione um novo usuário</h2>
+      <div>
+        <label for="title" class="col-100">Nome</label>
         <input
           type="text"
-          class="form-control"
+          class="mt-1 col-50"
           id="title"
           required
           [(ngModel)]="usuario.nome"
           name="title"
         />
       </div>
-
-      <button (click)="saveUsuario()" class="btn btn-success">Submit</button>
+      <div class="row col-100 mt-1">
+        <button (click)="saveUsuario()" class="btn btn-success col-25">Adicionar</button>
+      </div>
+     
     </div>
 
     <div *ngIf="submitted">
-      <h4>Usuario was submitted successfully!</h4>
-      <button class="btn btn-success" (click)="newUsuario()">Add</button>
+      <h2>Usuario foi adicionado com sucesso!</h2>
+      <button class="btn btn-success" (click)="newUsuario()">Adicionar novo usuário</button>
     </div>
   </div>
 </div>
 
 
-<div class="list row">
+<div class="list row mt-3">
     <!-- List Users -->
-    <div class="col-md-6">
-      <h4>Usuarios List</h4>
-      <ul class="list-group">
-        <li
-          class="list-group-item"
+    <div class="col-100">
+      <h2><i class="fa fa-users" aria-hidden="true"></i>
+         Todos os usuários</h2>
+      <div class="mt-2">
+        <div 
+          class="col-33 card"
           *ngFor="let usuario of usuarios; let i = index"
-          [class.active]="i == currentIndex"
-          (click)="setActiveUsuario(usuario, i)"
+          [class.active]="i == currentIndex" 
         >
-          {{ usuario.nome }}
-        </li>
-      </ul>
-    </div>
-    <!-- Detail User -->
-    <div class="col-md-6">
-      <div *ngIf="currentUsuario">
-        <h4>Tutorial</h4>
-        <div>
-          <label><strong>Nome:</strong></label> {{ currentUsuario.nome }}
-        </div> 
-        <button class="badge badge-danger mr-2" (click)="deleteUsuario()">
-          Delete
-        </button>
-        <a class="badge badge-warning" routerLink="/usuario/{{ currentUsuario.id }}/tarefas/">
-          Ver tarefas
-        </a>
+          <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+          <div class="container">
+            <h4><b>{{ usuario.nome }}</b></h4> 
+            <button class="badge badge-danger mr-2" (click)="setActiveUsuario(usuario, i)">
+              Deletar
+            </button>
+            <a class="badge badge-warning" routerLink="/usuario/{{ usuario.id }}/tarefas/">
+              Ver tarefas
+            </a>
+          </div>
+        </div>
       </div>
-      
-      <div *ngIf="!currentUsuario">
-        <br />
-        <p>Please click on a Usuario...</p>
-      </div>
-    </div>
+    </div> 
   </div>
   
