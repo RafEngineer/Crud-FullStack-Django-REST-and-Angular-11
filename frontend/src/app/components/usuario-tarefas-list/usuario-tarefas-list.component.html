@@ -1,92 +1,83 @@
-<div >
+<a routerLink="/usuarios">
+    << Voltar
+</a> 
+<h1>Tarefas do usuário</h1> 
     <!-- Add User -->
 <div>
-    <div class="submit-form">
-        <div *ngIf="!submitted">
-            <div class="form-group">
-            <label for="title">Descrição da Tarefa</label>
+    <div class="row mt-3">
+        <div *ngIf="!submitted" class="col-100">
+            <h2><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                Adicione nova tarefa para o usuário</h2>
+            <div>
+            <label for="title" class="col-100">Descrição da Tarefa</label>
             <input
                 type="text"
-                class="form-control"
+                class="mt-1 col-50"
                 id="title"
-                required
                 [(ngModel)]="tarefa.descricao"
                 name="title"
             />
-            </div>
-            <div class="form-group">
-                <label for="title">Estado</label>
-                <select 
+            <label for="title" class="col-100">Estado</label>
+            <select 
                     name="estado"
                     id="estado"
-                    class="form-control"
+                    class="mt-1 col-50"
                     [(ngModel)]="tarefa.estado"
                 >
-                    <option disabled>Selecione um estado</option>
-                    <option value="pendente">Pendente</option>
-                    <option value="feito">Feito</option>
-                </select> 
+                <option disabled >Selecione um estado</option>
+                <option value="pendente">Pendente</option>
+                <option value="feito">Feito</option>
+            </select>  
+            <div class="row col-100 mt-1">
+                <button (click)="saveTarefa()" class="button bg-success col-25">Adicionar</button> 
             </div>
-    
-            <button (click)="saveTarefa()" class="btn btn-success">Submit</button>
-        </div>
-  
-        <div *ngIf="submitted">
-            <h4>Tarefa was submitted successfully!</h4>
-            <button class="btn btn-success" (click)="newTarefa()">Add</button>
-        </div>
         </div>
     </div>
-
-    <div class="list row">
-        <!-- List Users -->
-        <div class="col-md-6">
-            <h4>Tarefas List</h4>
-            <ul class="list-group">
-            <li
-                class="list-group-item"
-                *ngFor="let tarefa of tarefas; let i = index"
-                [class.active]="i == currentIndex"
-                (click)="setActiveTarefa(tarefa, i)"
-            >
-                {{ tarefa.descricao }} | Estado: {{ tarefa.estado }}
-            </li>
-            </ul>
-        </div>
-    </div>
-    <!-- Detail User -->
-    <div class="col-md-6">
-        <div *ngIf="currentTarefas">
-          <h4>Tarefa</h4>
-          <div>
-            <label><strong>Descrição:</strong></label> {{ currentTarefas.descricao }}
-          </div>   
-          <div class="form-group">
-                <label for="title">Estado</label>
-                <select 
-                    name="estado"
-                    id="estado"
-                    class="form-control"
-                    [(ngModel)]="currentTarefas.estado"
-                >
-                    <option disabled>Selecione um estado</option>
-                    <option value="pendente">Pendente</option>
-                    <option value="feito">Feito</option>
-                </select> 
-            </div>
-
-          <button class="badge badge-danger mr-2" (click)="updateTarefa()">
-            Editar
-          </button>
-
-          <button class="badge badge-danger mr-2" (click)="deleteTarefa()">
-            Delete
-          </button>
-        </div>
-        
-        <div *ngIf="!currentTarefas">
-          <br />
-          <p>Please click on a Tarefa...</p>
-        </div>
-      </div>
+    <div *ngIf="submitted">
+        <h2>Tarefa foi adicionada com sucesso!</h2> 
+        <button class="button bg-success" (click)="newTarefa()">Adicionar nova tarefa</button>
+    </div> 
 </div>
+<div class="row mt-3">
+    <table class="col-100" style="margin-right: 20px;">
+        <tr>
+            <th>Lista de tarefas</th>
+        </tr>
+        <tr  
+        *ngFor="let tarefa of tarefas; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveTarefa(tarefa, i)"
+        >
+            <td>{{ tarefa.descricao }} <span class="estado estado-{{ tarefa.estado }}"> {{ tarefa.estado }}</span></td> 
+        </tr>
+    </table>
+</div> 
+<!-- Detail User -->
+<div class="row mt-3">
+    <div *ngIf="currentTarefas" class="col-100 mt-3">
+        <h2><i class="fa fa-edit" aria-hidden="true"></i>
+            Editar tarefa {{ currentTarefas.descricao }}
+        </h2>
+        
+        <label for="title" class="col-100">Estado</label> 
+        <select 
+            name="estado"
+            id="estado"
+            class="mt-1 col-50"
+            [(ngModel)]="currentTarefas.estado"
+        >
+            <option disabled>Selecione um estado</option>
+            <option value="pendente">Pendente</option>
+            <option value="feito">Feito</option>
+        </select> 
+
+        <div class="row col-100 mt-1">
+            <button class="button bg-primary col-25 mr-2" (click)="updateTarefa()">
+            Editar
+            </button>
+            <button class="button bg-danger col-25" (click)="deleteTarefa()">
+                Delete
+            </button>
+        </div>
+    </div>
+</div> 

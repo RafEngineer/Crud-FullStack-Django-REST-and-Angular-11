@@ -34,8 +34,11 @@ export class UsuariosListComponent implements OnInit {
     const data = {
       nome: this.usuario.nome
     }
-
-    this.usuarioService.create(data)
+    if(data.nome == '')
+    {
+      alert('Campo nome é obrigatório')
+    }else{
+      this.usuarioService.create(data)
       .subscribe(
         response => {
           console.log(response);
@@ -45,6 +48,8 @@ export class UsuariosListComponent implements OnInit {
         error => {
           console.log(error)
         });
+    }
+    
   }
 
   newUsuario(): void {

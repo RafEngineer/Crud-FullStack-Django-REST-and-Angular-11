@@ -45,17 +45,23 @@ export class UsuarioTarefasListComponent implements OnInit {
       estado: this.tarefa.estado,
       user: user_id
     }
+
+    if(data.descricao == '' || data.estado == '')
+    {
+      alert('Todos os campos são obrigatórios')
+    }else{
     
     this.tarefasService.create(data)
       .subscribe(
         response => {
           console.log(response);
-          this.submitted = true;
+          this.submitted = true; 
           this.refreshList(user_id);
         },
         error => {
           console.log(error)
         });
+    }
   }
 
   newTarefa(): void {
@@ -64,6 +70,7 @@ export class UsuarioTarefasListComponent implements OnInit {
       descricao: '',
       estado: '',
     };
+
   }
 
   retrieveTarefas(id: string): void {
@@ -87,6 +94,7 @@ export class UsuarioTarefasListComponent implements OnInit {
   setActiveTarefa(tarefa: Tarefa, index: number): void {
     this.currentTarefas = tarefa;
     this.currentIndex = index;
+    window.scrollTo(0 , document.body.scrollHeight);
   }
 
   deleteTarefa(): void {  
@@ -115,6 +123,7 @@ export class UsuarioTarefasListComponent implements OnInit {
         response => { 
           console.log(response);
           this.message = response.message;
+          alert(`Tarefa ${data.descricao} editada com sucesso`)
         },
         error => {
           console.log(error);
