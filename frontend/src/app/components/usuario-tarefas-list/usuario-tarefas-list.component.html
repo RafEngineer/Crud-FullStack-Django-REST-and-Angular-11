@@ -1,0 +1,92 @@
+<div >
+    <!-- Add User -->
+<div>
+    <div class="submit-form">
+        <div *ngIf="!submitted">
+            <div class="form-group">
+            <label for="title">Descrição da Tarefa</label>
+            <input
+                type="text"
+                class="form-control"
+                id="title"
+                required
+                [(ngModel)]="tarefa.descricao"
+                name="title"
+            />
+            </div>
+            <div class="form-group">
+                <label for="title">Estado</label>
+                <select 
+                    name="estado"
+                    id="estado"
+                    class="form-control"
+                    [(ngModel)]="tarefa.estado"
+                >
+                    <option disabled>Selecione um estado</option>
+                    <option value="pendente">Pendente</option>
+                    <option value="feito">Feito</option>
+                </select> 
+            </div>
+    
+            <button (click)="saveTarefa()" class="btn btn-success">Submit</button>
+        </div>
+  
+        <div *ngIf="submitted">
+            <h4>Tarefa was submitted successfully!</h4>
+            <button class="btn btn-success" (click)="newTarefa()">Add</button>
+        </div>
+        </div>
+    </div>
+
+    <div class="list row">
+        <!-- List Users -->
+        <div class="col-md-6">
+            <h4>Tarefas List</h4>
+            <ul class="list-group">
+            <li
+                class="list-group-item"
+                *ngFor="let tarefa of tarefas; let i = index"
+                [class.active]="i == currentIndex"
+                (click)="setActiveTarefa(tarefa, i)"
+            >
+                {{ tarefa.descricao }} | Estado: {{ tarefa.estado }}
+            </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Detail User -->
+    <div class="col-md-6">
+        <div *ngIf="currentTarefas">
+          <h4>Tarefa</h4>
+          <div>
+            <label><strong>Descrição:</strong></label> {{ currentTarefas.descricao }}
+          </div>   
+          <div class="form-group">
+                <label for="title">Estado</label>
+                <select 
+                    name="estado"
+                    id="estado"
+                    class="form-control"
+                    [(ngModel)]="currentTarefas.estado"
+                >
+                    <option disabled>Selecione um estado</option>
+                    <option value="pendente">Pendente</option>
+                    <option value="feito">Feito</option>
+                </select> 
+            </div>
+
+          <button class="badge badge-danger mr-2" (click)="updateTarefa()">
+            Editar
+          </button>
+
+          <button class="badge badge-danger mr-2" (click)="deleteTarefa()">
+            Delete
+          </button>
+        </div>
+        
+        <div *ngIf="!currentTarefas">
+          <br />
+          <p>Please click on a Tarefa...</p>
+        </div>
+      </div>
+</div>
