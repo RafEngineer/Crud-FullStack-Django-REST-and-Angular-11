@@ -1,1 +1,1 @@
-# crud fullstack
+# Crud FullStack (Django REST + Angular 11)
